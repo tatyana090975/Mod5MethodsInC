@@ -66,20 +66,32 @@ namespace Mod5MethodsInC
 
             return result;
         }
+
+        static int[] SortArray(int[] result)
+        {
+            int temp;
+            for (int i = 0; i < result.Length; i++)
+            {
+                for (int j = i + 1; j < result.Length; j++)
+                {
+                    if (result[i] > result[j])
+                    {
+                        temp = result[i];
+                        result[i] = result[j];
+                        result[j] = temp;
+                    }                    
+                }
+            }
+            foreach (var item in result)
+            {
+                Console.Write(item);
+            }
+            return result;
+        }
         static void Main(string[] args)
         {
-            var (username, age) = ("Jane", 27);
-
-            Console.WriteLine("Ваше имя: {0}", username);
-            Console.WriteLine("Ваш возраст: {0}", age);
-
-            string[] favcolors = new string[3];
-            for (int i = 0; i < 3; i++)
-            {
-                favcolors[i] = ShowColor(username, age);
-            }
-
-            ShowColors(favcolors); 
+            int[] arr = GetArrayFromConsole();
+            SortArray(arr);
             
             Console.ReadKey();
         }

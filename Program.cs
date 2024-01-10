@@ -8,8 +8,10 @@ namespace Mod5MethodsInC
 {
     internal class Program
     {
-        static string ShowColor(string color)
+        static string ShowColor(string username, int age)
         {
+            Console.WriteLine($"{username}, {age} лет напишите свой любимый цвет на английском с маленькой буквы");
+            string color = Console.ReadLine();
             switch (color)
             {
                 case "red":
@@ -55,7 +57,7 @@ namespace Mod5MethodsInC
         }
         static void Main(string[] args)
         {
-            var (username,age) = ("Jane", 27);
+            var (username, age) = ("Jane", 27);
 
             Console.WriteLine("Ваше имя: {0}", username);
             Console.WriteLine("Ваш возраст: {0}", age);
@@ -64,9 +66,7 @@ namespace Mod5MethodsInC
             string[] favcolors = new string[3];
             for (int i = 0; i < 3; i++)
             {
-                Console.WriteLine($"{username} напишите свой любимый цвет на английском с маленькой буквы");
-                favcolors[i] = Console.ReadLine();
-                ShowColor(favcolors[i]);
+                favcolors[i] = ShowColor(username, age);
             }
             Console.WriteLine("Ваши любимые цвета:");
 
@@ -76,7 +76,7 @@ namespace Mod5MethodsInC
                     Console.WriteLine(color);
                     
                 }
-
+                //Console.WriteLine()
             
             Console.ReadKey();
         }

@@ -10,7 +10,7 @@ namespace Mod5MethodsInC
     {
         static string ShowColor(string username, int age)
         {
-            Console.WriteLine($"{username}, {age} лет напишите свой любимый цвет на английском с маленькой буквы");
+            Console.WriteLine($"{username}, {age} лет \nнапишите свой любимый цвет на английском с маленькой буквы");
             string color = Console.ReadLine();
             switch (color)
             {

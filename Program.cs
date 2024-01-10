@@ -55,9 +55,9 @@ namespace Mod5MethodsInC
                 ShowColor(favcolors[i]);
             }
             Console.WriteLine("Ваши любимые цвета:");
-            for (int k = 0; k < favcolors.Length; k++)
+            foreach (var color in favcolors)
             {
-                Console.WriteLine(favcolors[k]);
+                Console.WriteLine(color);
             }
             
             Console.ReadKey();

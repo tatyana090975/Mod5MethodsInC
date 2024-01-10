@@ -10,9 +10,6 @@ namespace Mod5MethodsInC
     {
         static string ShowColor(string color)
         {
-            //Console.WriteLine("Напишите свой любимый цвет на английском с маленькой буквы");
-            //var color = Console.ReadLine();
-
             switch (color)
             {
                 case "red":
@@ -58,32 +55,29 @@ namespace Mod5MethodsInC
         }
         static void Main(string[] args)
         {
-            int[] arr = GetArrayFromConsole();
-            int temp;
+            var (username,age) = ("Jane", 27);
+
+            Console.WriteLine("Ваше имя: {0}", username);
+            Console.WriteLine("Ваш возраст: {0}", age);
+
+
+            string[] favcolors = new string[3];
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine($"{username} напишите свой любимый цвет на английском с маленькой буквы");
+                favcolors[i] = Console.ReadLine();
+                ShowColor(favcolors[i]);
+            }
+            Console.WriteLine("Ваши любимые цвета:");
 
             
-                
-
-            for (int i = 0; i < arr.Length; i++)
-            {
-                
-                for (int j = i + 1; j < arr.Length; j++)
+                foreach (var color in favcolors)
                 {
-                    if (arr[i] > arr[j])
-                    {
-                        temp = arr[i];
-                        arr[i] = arr[j];
-                        arr[j] = temp;
-                    }
-
+                    Console.WriteLine(color);
+                    
                 }
-            }
-            foreach (var item in arr)
-            {
-                Console.Write(item);
-            }
 
-
+            
             Console.ReadKey();
         }
     }

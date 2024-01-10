@@ -43,6 +43,17 @@ namespace Mod5MethodsInC
             }
             return color;
         }
+
+        static void ShowColors(string[] favcolors)
+        {
+            Console.WriteLine("Ваши любимые цвета:");
+
+
+            foreach (var color in favcolors)
+            {
+                Console.WriteLine(color);
+            }
+        }
         static int[] GetArrayFromConsole()
         {
             var result = new int[5];
@@ -62,21 +73,13 @@ namespace Mod5MethodsInC
             Console.WriteLine("Ваше имя: {0}", username);
             Console.WriteLine("Ваш возраст: {0}", age);
 
-
             string[] favcolors = new string[3];
             for (int i = 0; i < 3; i++)
             {
                 favcolors[i] = ShowColor(username, age);
             }
-            Console.WriteLine("Ваши любимые цвета:");
 
-            
-                foreach (var color in favcolors)
-                {
-                    Console.WriteLine(color);
-                    
-                }
-                //Console.WriteLine()
+            ShowColors(favcolors); 
             
             Console.ReadKey();
         }

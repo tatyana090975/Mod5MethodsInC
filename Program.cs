@@ -125,7 +125,6 @@ namespace Mod5MethodsInC
             {
                 int[] arr = GetArrayFromConsole();
                 PrintArray(arr);
-
             }
 
             Console.ReadKey();

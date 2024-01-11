@@ -174,11 +174,12 @@ namespace Mod5MethodsInC
         }
         static void Main(string[] args)
         {
-            int a = 18;
-            int res;
-            
-            SumNumbers(ref a, 7, out res, 4);
-            Console.WriteLine(res);
+            var arr = new int[] { 1, 2, 3, 89, 1, 4 };
+
+            int[] arr1;
+            int[] arr2;
+            SortArray(arr, out arr1, out arr2);
+
 
             Console.ReadKey();
         }           

@@ -66,7 +66,6 @@ namespace Mod5MethodsInC
 
             return result;
         }
-
         static int[] SortArray(int[] result)
         {
             int temp;

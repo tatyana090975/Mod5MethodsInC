@@ -54,8 +54,9 @@ namespace Mod5MethodsInC
                 Console.WriteLine(color);
             }
         }
-        static int[] GetArrayFromConsole(int num = 5)
+        static int[] GetArrayFromConsole(ref int num)
         {
+            num = 6;
             var result = new int[num];
 
             for (int i = 0; i < result.Length; i++)
@@ -133,6 +134,11 @@ namespace Mod5MethodsInC
         {
             data = 3;
             arr[0] = data;
+        }
+        static void GetAge(out string name, out byte age)
+        {
+            name = "Ugin";
+            age = 58;
         }
         static void Main(string[] args)
         {

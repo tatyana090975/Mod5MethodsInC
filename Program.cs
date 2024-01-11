@@ -44,7 +44,7 @@ namespace Mod5MethodsInC
             return color;
         }
 
-        static void ShowColors(string[] favcolors)
+        static void ShowColors(string username, params string[] favcolors)
         {
             Console.WriteLine("Ваши любимые цвета:");
 
@@ -90,8 +90,16 @@ namespace Mod5MethodsInC
         }
         static void Main(string[] args)
         {
-            int[] arr = GetArrayFromConsole();
-            SortArray(arr);
+            //int[] arr = GetArrayFromConsole();
+            //SortArray(arr);
+            string[] favcolors = new string[3];
+            for (int i = 0; i < 3; i++)
+            {
+                favcolors[i] = ShowColor("Anna", 77);             
+                
+            }
+
+            ShowColors("Anna", favcolors);
             
             Console.ReadKey();
         }

@@ -118,8 +118,28 @@ namespace Mod5MethodsInC
                 Console.Write($"{arr} ");
             }
         }
+        static string GetName(string name)
+        {
+            Console.WriteLine("Введите имя");
+            name = Console.ReadLine();
+            return name;    
+        }
+        static void ChangeAge(ref int age)
+        {
+            Console.WriteLine("Введите свой возраст: ");
+            age = Convert.ToInt32(Console.ReadLine());
+        }
         static void Main(string[] args)
-        {            
+        {
+            int Age = 27;
+            Console.WriteLine(Age);
+            ChangeAge(ref Age);
+            Console.WriteLine(Age);
+            var Name = "Ugin";
+            Console.WriteLine(Name);
+            Name = GetName(Name);
+            Console.WriteLine(Name);
+            /*
             Console.WriteLine("Введите размер массива: ");
             try
             {
@@ -132,7 +152,7 @@ namespace Mod5MethodsInC
             {
                 int[] arr = GetArrayFromConsole();
                 PrintArray(arr);
-            }
+            }*/
 
             Console.ReadKey();
         }

@@ -110,7 +110,15 @@ namespace Mod5MethodsInC
                 Console.Write($"{arr} ");
             }
         }
-        
+        static void ShowArray(int[] array, bool IsSort = false)
+        {
+            if (IsSort) SortArray(array);
+
+            foreach (var arr in array)
+            {
+                Console.Write($"{arr} ");
+            }
+        }
         static void Main(string[] args)
         {            
             Console.WriteLine("Введите размер массива: ");
@@ -119,7 +127,7 @@ namespace Mod5MethodsInC
                 int num = Convert.ToInt32(Console.ReadLine());
 
                 int[] arr = GetArrayFromConsole(num);
-                PrintArray(arr);
+                ShowArray(arr);
             }
             catch
             {

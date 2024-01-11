@@ -129,17 +129,19 @@ namespace Mod5MethodsInC
             Console.WriteLine("Введите свой возраст: ");
             age = Convert.ToInt32(Console.ReadLine());
         }
+        static void BigDataOperation(in int[] arr, ref int data)
+        {
+            data = 3;
+            arr[0] = data;
+        }
         static void Main(string[] args)
         {
-            int Age = 27;
-            Console.WriteLine(Age);
-            ChangeAge(ref Age);
-            Console.WriteLine(Age);
-            var Name = "Ugin";
-            Console.WriteLine(Name);
-            Name = GetName(Name);
-            Console.WriteLine(Name);
-            
+            var arr = new int[] { 1, 2, 3 };
+            var data = 5;
+            BigDataOperation(arr, ref data);
+
+            Console.WriteLine(arr[0]);
+
 
             Console.ReadKey();
         }

@@ -54,9 +54,9 @@ namespace Mod5MethodsInC
                 Console.WriteLine(color);
             }
         }
-        static int[] GetArrayFromConsole()
+        static int[] GetArrayFromConsole(int num = 5)
         {
-            var result = new int[5];
+            var result = new int[num];
 
             for (int i = 0; i < result.Length; i++)
             {
@@ -88,19 +88,46 @@ namespace Mod5MethodsInC
             }
             return result;
         }
-        static void Main(string[] args)
+        static void SortComplexArray(int[,] arr)
         {
-            //int[] arr = GetArrayFromConsole();
-            //SortArray(arr);
-            string[] favcolors = new string[3];
-            for (int i = 0; i < 3; i++)
+            int temp;
+            for (int i = 0; i <= arr.GetUpperBound(0); i++)
             {
-                favcolors[i] = ShowColor("Anna", 77);             
-                
+                for (int j = 0; j <= arr.GetUpperBound(1); j++)
+                    for (int k = j + 1; k <= arr.GetUpperBound(1); k++)
+                        if (arr[i, j] > arr[i, k])
+                        {
+                            temp = arr[i, k];
+                            arr[i, k] = arr[i, j];
+                            arr[i, j] = temp;
+                        }
+            }
+        }
+        static void PrintArray(params int[] array)
+        {
+            foreach (var arr in array)
+            {
+                Console.Write($"{arr} ");
+            }
+        }
+        
+        static void Main(string[] args)
+        {            
+            Console.WriteLine("Введите размер массива: ");
+            try
+            {
+                int num = Convert.ToInt32(Console.ReadLine());
+
+                int[] arr = GetArrayFromConsole(num);
+                PrintArray(arr);
+            }
+            catch
+            {
+                int[] arr = GetArrayFromConsole();
+                PrintArray(arr);
+
             }
 
-            ShowColors("Anna", favcolors);
-            
             Console.ReadKey();
         }
     }

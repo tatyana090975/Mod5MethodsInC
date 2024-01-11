@@ -8,6 +8,12 @@ namespace Mod5MethodsInC
 {
     internal class Program
     {
+        static int SumNumbers(ref int num1, in int num2, out int num3, int num4)
+        {
+            num1 = 4;
+            num3 = (num1 + num2)*num4;
+            return num3;
+        }
         static string ShowColor(string username, int age)
         {
             Console.WriteLine($"{username}, {age} лет \nнапишите свой любимый цвет на английском с маленькой буквы");
@@ -43,7 +49,6 @@ namespace Mod5MethodsInC
             }
             return color;
         }
-
         static void ShowColors(string username, params string[] favcolors)
         {
             Console.WriteLine("Ваши любимые цвета:");
@@ -67,7 +72,34 @@ namespace Mod5MethodsInC
 
             return result;
         }
-        static int[] SortArray(int[] result)
+        static void SortArray(in int[] array, out int[] sorteddesc, out int[] sortedasc)
+        {
+            sorteddesc = SortArrayDesc(array);
+            Console.WriteLine();
+            sortedasc = SortArrayAsc(array);
+        }
+        static int[] SortArrayDesc(int[] result)
+        {
+            int temp;
+            for (int i = 0; i < result.Length; i++)
+            {
+                for (int j = i + 1; j < result.Length; j++)
+                {
+                    if (result[i] < result[j])
+                    {
+                        temp = result[i];
+                        result[i] = result[j];
+                        result[j] = temp;
+                    }
+                }
+            }
+            foreach (var item in result)
+            {
+                Console.Write(item);
+            }
+            return result;
+        }
+        static int[] SortArrayAsc(int[] result)
         {
             int temp;
             for (int i = 0; i < result.Length; i++)
@@ -112,12 +144,12 @@ namespace Mod5MethodsInC
         }
         static void ShowArray(int[] array, bool IsSort = false)
         {
-            if (IsSort) SortArray(array);
+            /*if (IsSort) SortArray(array);
 
             foreach (var arr in array)
             {
                 Console.Write($"{arr} ");
-            }
+            }*/
         }
         static string GetName(string name)
         {
@@ -142,14 +174,13 @@ namespace Mod5MethodsInC
         }
         static void Main(string[] args)
         {
-            var arr = new int[] { 1, 2, 3 };
-            var data = 5;
-            BigDataOperation(arr, ref data);
-
-            Console.WriteLine(arr[0]);
-
+            int a = 18;
+            int res;
+            
+            SumNumbers(ref a, 7, out res, 4);
+            Console.WriteLine(res);
 
             Console.ReadKey();
-        }
+        }           
     }
 }

@@ -139,20 +139,7 @@ namespace Mod5MethodsInC
             Console.WriteLine(Name);
             Name = GetName(Name);
             Console.WriteLine(Name);
-            /*
-            Console.WriteLine("Введите размер массива: ");
-            try
-            {
-                int num = Convert.ToInt32(Console.ReadLine());
-
-                int[] arr = GetArrayFromConsole(num);
-                ShowArray(arr);
-            }
-            catch
-            {
-                int[] arr = GetArrayFromConsole();
-                PrintArray(arr);
-            }*/
+            
 
             Console.ReadKey();
         }

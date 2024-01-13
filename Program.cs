@@ -172,16 +172,38 @@ namespace Mod5MethodsInC
             name = "Ugin";
             age = 58;
         }
+        static void Echo(string saidword)
+        {
+            Console.WriteLine(saidword);
+        }
+        static void Echo1(string saidword, int deep)
+        {
+            var modif = saidword;
+            if (modif.Length > 2)
+            {
+                //int a = modif.Length - 1;
+                modif = modif.Remove(0, 2);
+            }
+            Console.WriteLine("..." + modif);
+            if (deep > 1)
+            {
+                Echo1(modif, deep - 1);
+            }
+        }
         static void Main(string[] args)
         {
-            var arr = new int[] { 1, 2, 3, 89, 1, 4 };
+            Console.WriteLine("Напишите что-то");
 
-            int[] arr1;
-            int[] arr2;
-            SortArray(arr, out arr1, out arr2);
+            var str = Console.ReadLine();
 
+            Console.WriteLine("Укажите глубину эха");
 
-            Console.ReadKey();
+            var deep = int.Parse(Console.ReadLine());
+
+            Echo1(str, deep);
+                       
+           
+        Console.ReadKey();
         }           
     }
 }

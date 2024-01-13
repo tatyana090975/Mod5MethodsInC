@@ -191,7 +191,8 @@ namespace Mod5MethodsInC
                 Echo1(modif, deep - 1);
             }
         }
-        static int Factorial(int x)
+        static decimal Factorial(decimal x)
+        
         {
             if (x == 0)
             {
@@ -208,7 +209,7 @@ namespace Mod5MethodsInC
 
             int x =Convert.ToInt32(Console.ReadLine());
             
-            var res = Factorial(x);
+            decimal res = Factorial(x);
 
             Console.WriteLine($"Факториал числа {x} = {res}");
 

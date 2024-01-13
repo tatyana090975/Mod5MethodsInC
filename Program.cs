@@ -191,17 +191,28 @@ namespace Mod5MethodsInC
                 Echo1(modif, deep - 1);
             }
         }
+        static int Factorial(int x)
+        {
+            if (x == 0)
+            {
+                return 1;
+            }
+            else
+            {
+                return x * Factorial(x - 1);
+            }
+        }
         static void Main(string[] args)
         {
-            Console.WriteLine("Напишите что-то");
+            Console.WriteLine("Напишите число");
 
-            var str = Console.ReadLine();
+            int x =Convert.ToInt32(Console.ReadLine());
+            
+            var res = Factorial(x);
 
-            Console.WriteLine("Укажите глубину эха");
+            Console.WriteLine($"Факториал числа {x} = {res}");
 
-            var deep = int.Parse(Console.ReadLine());
-
-            Echo1(str, deep);
+           
                        
            
         Console.ReadKey();

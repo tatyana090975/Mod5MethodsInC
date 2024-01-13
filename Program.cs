@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,12 +9,6 @@ namespace Mod5MethodsInC
 {
     internal class Program
     {
-        static int SumNumbers(ref int num1, in int num2, out int num3, int num4)
-        {
-            num1 = 4;
-            num3 = (num1 + num2)*num4;
-            return num3;
-        }
         static string ShowColor(string username, int age)
         {
             Console.WriteLine($"{username}, {age} лет \nнапишите свой любимый цвет на английском с маленькой буквы");
@@ -45,7 +40,7 @@ namespace Mod5MethodsInC
 
                     Console.WriteLine("Your color is yellow!");
                     break;
-               
+
             }
             return color;
         }
@@ -72,90 +67,13 @@ namespace Mod5MethodsInC
 
             return result;
         }
-        static void SortArray(in int[] array, out int[] sorteddesc, out int[] sortedasc)
-        {
-            sorteddesc = SortArrayDesc(array);
-            Console.WriteLine();
-            sortedasc = SortArrayAsc(array);
-        }
-        static int[] SortArrayDesc(int[] result)
-        {
-            int temp;
-            for (int i = 0; i < result.Length; i++)
-            {
-                for (int j = i + 1; j < result.Length; j++)
-                {
-                    if (result[i] < result[j])
-                    {
-                        temp = result[i];
-                        result[i] = result[j];
-                        result[j] = temp;
-                    }
-                }
-            }
-            foreach (var item in result)
-            {
-                Console.Write(item);
-            }
-            return result;
-        }
-        static int[] SortArrayAsc(int[] result)
-        {
-            int temp;
-            for (int i = 0; i < result.Length; i++)
-            {
-                for (int j = i + 1; j < result.Length; j++)
-                {
-                    if (result[i] > result[j])
-                    {
-                        temp = result[i];
-                        result[i] = result[j];
-                        result[j] = temp;
-                    }                    
-                }
-            }
-            foreach (var item in result)
-            {
-                Console.Write(item);
-            }
-            return result;
-        }
-        static void SortComplexArray(int[,] arr)
-        {
-            int temp;
-            for (int i = 0; i <= arr.GetUpperBound(0); i++)
-            {
-                for (int j = 0; j <= arr.GetUpperBound(1); j++)
-                    for (int k = j + 1; k <= arr.GetUpperBound(1); k++)
-                        if (arr[i, j] > arr[i, k])
-                        {
-                            temp = arr[i, k];
-                            arr[i, k] = arr[i, j];
-                            arr[i, j] = temp;
-                        }
-            }
-        }
-        static void PrintArray(params int[] array)
-        {
-            foreach (var arr in array)
-            {
-                Console.Write($"{arr} ");
-            }
-        }
-        static void ShowArray(int[] array, bool IsSort = false)
-        {
-            /*if (IsSort) SortArray(array);
 
-            foreach (var arr in array)
-            {
-                Console.Write($"{arr} ");
-            }*/
-        }
+
         static string GetName(string name)
         {
             Console.WriteLine("Введите имя");
             name = Console.ReadLine();
-            return name;    
+            return name;
         }
         static void ChangeAge(ref int age)
         {
@@ -191,47 +109,178 @@ namespace Mod5MethodsInC
                 Echo1(modif, deep - 1);
             }
         }
-        static decimal Factorial(decimal x)
-        
+
+        static Tuple<string, string, int, bool, int, string[], int, string[]> Corteg()
         {
-            if (x == 0)
+            //(string name, string surname, int age, bool pet, int quapet, string[] namepets, int quafavcolors, string[] favcolors) anketa;
+            Console.WriteLine("Ваше имя:");
+            string name = Console.ReadLine();
+            Console.WriteLine("Ваша фамилия:");
+            string surname = Console.ReadLine();
+            int a;
+            Ansver("Ваш возраст:", out a);
+            int age = a;
+            Console.WriteLine("Есть ли у вас питомцы? ");
+            string ansv = Console.ReadLine();
+            string[] namepets = ABS(ansv, out bool pet, out int quapet, out string[] nampets);
+            
+            Ansver("Сколько у вас любимых цветов?", out a);
+            int quafavcolors = a;
+            string[] favcolors = FavColors(quafavcolors);
+
+            return Tuple.Create<string, string, int, bool, int, string[], int, string[]>(name, surname, age, pet, quapet, namepets, quafavcolors, favcolors);
+        }
+        static string[] ABS(string ansv, out bool pet, out int quapet, out string[] nampets)
+        {
+            //bool pet;
+            switch (ansv)
             {
-                return 1;
-            }
-            else
-            {
-                return x * Factorial(x - 1);
+                case "Да":
+                    pet = true;
+                    int a;
+                    Ansver("Сколько у вас питомцев?", out a);
+                    quapet = a;
+                    //string[] namepet = NamePets(quapet);
+                    nampets = NamePets(quapet);
+                    return nampets;
+
+                    //break;
+                case "да":
+                    pet = true;
+                    Ansver("Сколько у вас питомцев?", out a);
+                    quapet = a;
+                    nampets = NamePets(quapet);
+                    return nampets;
+                    //break;
+                case "Нет":
+                    pet = false;
+                    nampets = new string[0];
+                    quapet = 0;
+                    return nampets;
+                    //break;
+                case "нет":
+                    pet = false;
+                    nampets = new string[0];
+                    quapet = 0;
+                    return nampets;
+                    //break;
+                default:
+                    pet = false;
+                    Console.WriteLine("К сожалению вы не ответили на вопрос.");
+                    nampets = new string[0];
+                    quapet = 0;
+                    return nampets;
+                    //break;
             }
         }
-        static int PowerUp(int N, byte pow)
+
+
+
+
+        /*
+        static void Anketa()
         {
-            if (pow == 0)
+            (string name, string surname, int age, bool pet, int quapet, string[] namepets, int quafavcolors, string[] favcolors) anketa;
+            Console.WriteLine("Ваше имя:");
+            anketa.name = Console.ReadLine();
+            Console.WriteLine("Ваша фамилия:");
+            anketa.surname = Console.ReadLine();
+            int a;
+            Ansver("Ваш возраст:", out a);
+            anketa.age = a;
+            Console.WriteLine("Есть ли у вас питомцы? ");
+            string pet = Console.ReadLine();
+            switch (pet)
             {
-                return 1;
-            }
-            else if (pow == 1)
+                case "Да":
+                    anketa.pet = true;
+                    Ansver("Сколько у вас питомцев?", out a);
+                    anketa.quapet = a;                    
+                    NamePets(anketa.quapet);
+                    break;
+                case "да":
+                    anketa.pet = true;
+                    Ansver("Сколько у вас питомцев?", out a);
+                    anketa.quapet = a;
+                    NamePets(anketa.quapet);
+                    break;
+                case "Нет":
+                    anketa.pet = false;                    
+                    break;
+                case "нет":
+                    anketa.pet = false;
+                    break;
+                default:
+                    Console.WriteLine("К сожалению вы не ответили на вопрос.");
+                    break;
+            }        
+            Ansver("Сколько у вас любимых цветов?", out a);
+            anketa.quafavcolors = a;
+            FaveColors(anketa.quafavcolors);
+            return;
+        }*/
+        static void Ansver(string num, out int a)
+        {
+            string num1;           
+            do
             {
-                return N;
+                Console.WriteLine(num);
+                num1 = Console.ReadLine();
+
             }
-            else
-            {
-                return N * PowerUp(N, (byte)(pow - 1));
-            }
+            while (CheckNum(num1, out a));
         }
+        static bool CheckNum(string num, out int intnum)
+        {
+
+            if (int.TryParse(num, out int number))
+            {
+                if (number > 0)
+                {
+                    intnum = number;
+                    return false;
+                }
+            }
+            {
+                intnum = 0;
+                return true;
+            }            
+        }
+
+
+        static string[] FavColors(int quafavcolors)
+        {
+            var favecolors = new string[quafavcolors];
+
+            for (int i = 0; i < favecolors.Length; i++)
+            {
+                Console.WriteLine("Введите название {0} цвета: ", i + 1);
+                favecolors[i] = Console.ReadLine();
+            }
+
+            return favecolors;
+        }
+        static string[] NamePets(int quapet)
+        {
+            var namepets = new string[quapet];
+
+            for (int i = 0; i < namepets.Length; i++)
+            {
+                Console.WriteLine("Введите имя {0} питомца: ", i + 1);
+                namepets[i] = Console.ReadLine();
+            }
+            return namepets;
+        }
+        /*
+        static void ShowAnketa(Anketa())
+        {
+            Console.WriteLine();
+        }*/
         static void Main(string[] args)
         {
-            Console.WriteLine("Напишите число");
+            
+            //ShowAnketa();
 
-            int N =Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Напишите степень числа");
-            byte pow = Convert.ToByte(Console.ReadLine());
-            decimal res = PowerUp(N, pow);
-
-            Console.WriteLine($"Степень {pow} числа {N} = {res}");
-
-           
-                       
-           
         Console.ReadKey();
         }           
     }

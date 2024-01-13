@@ -203,15 +203,31 @@ namespace Mod5MethodsInC
                 return x * Factorial(x - 1);
             }
         }
+        static int PowerUp(int N, byte pow)
+        {
+            if (pow == 0)
+            {
+                return 1;
+            }
+            else if (pow == 1)
+            {
+                return N;
+            }
+            else
+            {
+                return N * PowerUp(N, (byte)(pow - 1));
+            }
+        }
         static void Main(string[] args)
         {
             Console.WriteLine("Напишите число");
 
-            int x =Convert.ToInt32(Console.ReadLine());
-            
-            decimal res = Factorial(x);
+            int N =Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Напишите степень числа");
+            byte pow = Convert.ToByte(Console.ReadLine());
+            decimal res = PowerUp(N, pow);
 
-            Console.WriteLine($"Факториал числа {x} = {res}");
+            Console.WriteLine($"Степень {pow} числа {N} = {res}");
 
            
                        

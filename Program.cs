@@ -21,7 +21,49 @@ namespace Mod5MethodsInC
             anketa.age = a;
             Console.WriteLine("Есть ли у вас питомцы? ");
             string ansv = Console.ReadLine();
-            anketa.namepets = YesNoCheck(ansv, out bool pet1, out int quapet1, out string[] nampets);
+            string[] namepet = new string[0];
+            if (ansv == "Да")
+            {                
+                anketa.pet = true;
+                int b;
+                //string[] namepet;
+                Ansver("Сколько у вас питомцев?", out b);
+                anketa.quapet = b;
+                namepet = NamePets(anketa.quapet);
+            }
+            else if (ansv == "да")
+            {
+                anketa.pet = true;
+                int b;
+                //string[] namepet;
+                Ansver("Сколько у вас питомцев?", out b);
+                anketa.quapet = b;
+                namepet = NamePets(anketa.quapet);
+            }
+            else if (ansv == "Нет")
+            {
+                anketa.pet = false;
+                //string[] namepet;
+                namepet = new string[0];
+                anketa.quapet = 0;
+            }
+            else if (ansv == "нет")
+            {
+                anketa.pet = false;
+                //string[] namepet;
+                namepet = new string[0];
+                anketa.quapet = 0;
+            }
+            else
+            {
+                anketa.pet = false;
+                Console.WriteLine("К сожалению вы не ответили на вопрос.");
+                //string[] namepet;
+                namepet = new string[0];
+                anketa.quapet = 0;
+            }
+            anketa.namepets = namepet;
+            //anketa.namepets = YesNoCheck(ansv, out int quapet1, out string[] nampets);
             
             Ansver("Сколько у вас любимых цветов?", out a);
             anketa.quafavcolors = a;
@@ -29,41 +71,47 @@ namespace Mod5MethodsInC
             var res = anketa;
             return res;
         }
-        static string[] YesNoCheck(string ansv, out bool pet, out int quapet, out string[] nampets)
-        {            
-            switch (ansv)
+        /*
+        static string[] YesNoCheck(string ansv, out int quapet, out string[] nampets)
+        {
+            bool pet;
+            if (ansv == "Да")
             {
-                case "Да":
-                    pet = true;
-                    int a;
-                    Ansver("Сколько у вас питомцев?", out a);
-                    quapet = a;                    
-                    nampets = NamePets(quapet);
-                    return nampets;
-                case "да":
-                    pet = true;
-                    Ansver("Сколько у вас питомцев?", out a);
-                    quapet = a;
-                    nampets = NamePets(quapet);
-                    return nampets;                    
-                case "Нет":
-                    pet = false;
-                    nampets = new string[0];
-                    quapet = 0;
-                    return nampets;                    
-                case "нет":
-                    pet = false;
-                    nampets = new string[0];
-                    quapet = 0;
-                    return nampets;                    
-                default:
-                    pet = false;
-                    Console.WriteLine("К сожалению вы не ответили на вопрос.");
-                    nampets = new string[0];
-                    quapet = 0;
-                    return nampets;                    
+                pet = true;
+                int a;
+                Ansver("Сколько у вас питомцев?", out a);
+                quapet = a;
+                nampets = NamePets(quapet);
             }
-        }
+            else if (ansv == "да")
+            {
+                pet = true;
+                int a;
+                Ansver("Сколько у вас питомцев?", out a);
+                quapet = a;
+                nampets = NamePets(quapet);
+            }
+            else if (ansv == "Нет")
+            {
+                pet = false;
+                nampets = new string[0];
+                quapet = 0;
+            }
+            else if (ansv == "нет")
+            {
+                pet = false;
+                nampets = new string[0];
+                quapet = 0;
+            }
+            else
+            {
+                pet = false;
+                Console.WriteLine("К сожалению вы не ответили на вопрос.");
+                nampets = new string[0];
+                quapet = 0;
+            }
+            
+        }*/
        
         static void Ansver(string num, out int a)
         {
@@ -118,16 +166,23 @@ namespace Mod5MethodsInC
         
         static void ShowAnketa(string name, string surname, int age, bool pet, int quapet, string[] namepets, int quafavcolors, string[] favcolors)
         {            
-            Console.WriteLine(name);
-            Console.WriteLine(surname);
-            Console.WriteLine(age);
-            Console.WriteLine(pet);
-            Console.WriteLine(quapet);
+            Console.WriteLine("Ваше имя: {0}",name);
+            Console.WriteLine("Ваша фамилия: {0}", surname);
+            Console.WriteLine("Ваш возраст: {0}", age);
+            if (pet == true)
+            {
+                Console.WriteLine("У вас {0} питомцы.", quapet);
+            }
+            else
+            {
+                Console.WriteLine("У вас нет питомцев.");
+            }            
+            
             foreach (var namepet in namepets)
             {
                 Console.WriteLine(namepet);
             }
-            Console.WriteLine(quafavcolors);
+            Console.WriteLine("У вас {0} любимых цвета. Это: ", quafavcolors);
             foreach (var color in favcolors)
             {
                 Console.WriteLine(color);
@@ -143,7 +198,7 @@ namespace Mod5MethodsInC
             
             var anketa1 = CreateAnketa(anketa);
 
-            ShowAnketa(anketa);
+            ShowAnketa(anketa1.name, anketa1.surname, anketa1.age, anketa1.pet, anketa1.quapet, anketa1.namepets, anketa1.quafavcolors, anketa1.favcolors);
 
             Console.ReadKey();
         }           

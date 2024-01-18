@@ -141,7 +141,7 @@ namespace Mod5MethodsInC
             
             
             
-            //var anketa1 = CreateAnketa(anketa);
+            var anketa1 = CreateAnketa(anketa);
 
             ShowAnketa(anketa);
 
